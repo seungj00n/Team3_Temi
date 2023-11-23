@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
 }
 
+//apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'com.android.application'
+
 android {
     namespace 'com.example.temi_project'
     compileSdk 33
@@ -26,6 +29,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    packagingOptions {
+        exclude("META-INF/DEPENDENCIES")
+        exclude("META-INF/LICENSE")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/license.txt")
+        exclude("META-INF/NOTICE")
+        exclude("META-INF/NOTICE.txt")
+        exclude("META-INF/notice.txt")
+        exclude("META-INF/ASL2.0")
+        exclude("META-INF/*.kotlin_module")
+    }
 }
 
 dependencies {
@@ -36,4 +51,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation 'se.michaelthelin.spotify:spotify-web-api-java:8.3.4'
+    implementation 'com.google.code.gson:gson:2.8.9'
 }
