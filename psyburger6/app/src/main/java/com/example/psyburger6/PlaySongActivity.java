@@ -25,8 +25,11 @@ public class PlaySongActivity extends Activity implements
 
     //테미 움직임 추가 부분
     Robot robot;
+    Button dance_button;
     String movement_state;
+    String Playing_satae = "stop";
     double dance_speed = 0.1;
+    int dance_flag = 1; //1이면 춤추기 허용
 
     private WebView webView;
     private String HTMLFormat = "<!DOCTYPE html>" +
@@ -80,10 +83,7 @@ public class PlaySongActivity extends Activity implements
 
         //테미 움직임 추가 부분
         robot = Robot.getInstance();
-        movement_state = "motion1";
-        //Log.i("movement","motion1");
-        robot.turnBy(30, (float)0.3);
-        robot.tiltAngle(35, (float)0.5); // -25도에서 50도가 범위
+        dance_button = findViewById(R.id.dance_OnOff);
 
         //Youtube 실행
         webView = findViewById(R.id.webView);
@@ -130,6 +130,31 @@ public class PlaySongActivity extends Activity implements
                 startActivity(intent);
             }
         });
+
+        dance_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(dance_button.getText().equals("춤추기"))
+                {
+                    dance_button.setText("춤안추기");
+                    dance_flag = 1;
+                    if(Playing_satae.equals("playing"))
+                    {
+                        movement_state = "motion1";
+                        robot.turnBy(30, (float)dance_speed);
+                        robot.tiltAngle(35, (float)0.5); // -25도에서 50도가 범위
+                    }
+                }
+                //춤을 추지 않는다 설정.
+                else {
+                    dance_button.setText("춤추기");
+                    dance_flag = 0;
+                    robot.stopMovement(); //멈추기
+                }
+            }
+        });
+
+
     }
 
     //여기 start랑 stop도 테미 움직임에 추가된 부분.
@@ -167,8 +192,10 @@ public class PlaySongActivity extends Activity implements
             }
         }
         else if(status.equals("abort")){
-            //만약 회전이 불가능한 혼잡한 상황에 있다면 그 자리에서 따라가기 실행한다.
-            robot.beWithMe();
+            //만약 회전이 불가능한 혼잡한 상황에 있다면 멈추고 춤추기로 변경.
+            dance_button.setText("춤추기");
+            movement_state = "stop";
+            robot.stopMovement();
             Log.i("abort", "혼잡 상황");
         }
 
@@ -181,6 +208,9 @@ public class PlaySongActivity extends Activity implements
             // JavaScript에서 호출되면 영상 종료 여부를 처리합니다.
             if (isEnded) {
                 // 영상이 종료된 경우
+                movement_state = "stop";
+                Playing_satae = "stop";
+                robot.stopMovement();
                 Log.d("Youtube", "Video Ended");
                 Intent intent = new Intent(getApplicationContext(), FindNextSingerActivity.class);
                 startActivity(intent);
@@ -194,7 +224,14 @@ public class PlaySongActivity extends Activity implements
         public void onVideoPlaying(boolean isPlaying){
             if(isPlaying){
                 Log.d("Youtube", "Playing");
-
+                //dance_flag가 1이여야 춤추기 시작
+                if(dance_flag == 1)
+                {
+                    movement_state = "motion1";
+                    Playing_satae = "playing";
+                    robot.turnBy(30, (float)dance_speed);
+                    robot.tiltAngle(35, (float)0.5); // -25도에서 50도가 범위
+                }
             }
             else{
                 Log.d("Youtube", "Stopped Playing");

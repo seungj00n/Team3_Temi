@@ -30,6 +30,15 @@
             android:text="신나는 노래를 불렀을 때"/>
 
         <Button
+            android:id="@+id/dance_OnOff"
+            android:layout_width="160dp"
+            android:layout_height="109dp"
+            android:layout_marginLeft="570dp"
+            android:layout_marginTop="700dp"
+            android:text="춤안추기"
+            android:textSize="30sp" />
+
+        <Button
             android:id="@+id/sadsong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
