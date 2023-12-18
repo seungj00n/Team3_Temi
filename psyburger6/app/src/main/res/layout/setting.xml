@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/setting">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/setclosebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="843dp"
+            android:layout_marginTop="104dp"
+            android:src="@drawable/setclosebut"
+            android:adjustViewBounds="true"
+            android:background="#00000000"
+            android:scaleType="fitXY"/>
+
+        <ImageButton
+            android:id="@+id/goenergy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="904dp"
+            android:layout_marginTop="240dp"
+            android:src="@drawable/anergybut"
+            android:adjustViewBounds="true"
+            android:background="#00000000"
+            android:scaleType="fitXY"/>
+
+        <SeekBar
+            android:id="@+id/ttsvol"
+            android:layout_width="421dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="430dp"
+            android:layout_marginTop="215dp"/>
+        <SeekBar
+            android:id="@+id/songvol"
+            android:layout_width="421dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="430dp"
+            android:layout_marginTop="320dp"/>
+
+        <ToggleButton
+            android:id="@+id/temidance"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="430dp"
+            android:layout_marginTop="400dp"
+            android:textOn="Let's Dance"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+    </FrameLayout>
+
+
+</LinearLayout>
