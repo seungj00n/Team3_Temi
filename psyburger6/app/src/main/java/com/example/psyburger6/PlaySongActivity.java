@@ -77,10 +77,6 @@ public class PlaySongActivity extends Activity implements
 
         //테미 움직임 추가 부분
         robot = Robot.getInstance();
-        movement_state = "motion1";
-        //Log.i("movement","motion1");
-        robot.turnBy(30, (float)0.3);
-        robot.tiltAngle(35, (float)0.5); // -25도에서 50도가 범위
 
         //Youtube 실행
         webView = findViewById(R.id.webView);
@@ -179,6 +175,8 @@ public class PlaySongActivity extends Activity implements
             // JavaScript에서 호출되면 영상 종료 여부를 처리합니다.
             if (isEnded) {
                 // 영상이 종료된 경우
+                movement_state = "stop";
+                robot.stopMovement(); // 로봇 멈추기
                 Log.d("main", "done");
                 Intent intent = new Intent(getApplicationContext(), FindNextSingerActivity.class);
                 startActivity(intent);
@@ -190,6 +188,9 @@ public class PlaySongActivity extends Activity implements
         public void onVideoPlaying(boolean isPlaying){
             if(isPlaying){
                 Log.d("Main", "Playing");
+                movement_state = "motion1";
+                robot.turnBy(30, (float)0.3);
+                robot.tiltAngle(35, (float)0.5); // -25도에서 50도가 범위
             }
             else{
                 Log.d("Main", "Pass");
