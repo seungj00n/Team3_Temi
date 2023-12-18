@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -12,7 +13,8 @@ import androidx.annotation.Nullable;
 import com.robotemi.sdk.Robot;
 import com.robotemi.sdk.TtsRequest;
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends Activity implements
+        Robot.AsrListener {
 
     Robot robot;
 
@@ -61,4 +63,25 @@ public class HomeActivity extends Activity {
             }
         });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        robot.addAsrListener(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        robot.removeAsrListener(this);
+    }
+
+    //asrResult가 음성 string 데이터다.
+    public void onAsrResult(String asrResult) {
+
+            String stt_data;
+            stt_data = asrResult;
+            Log.i("words", stt_data);
+    }
+
 }

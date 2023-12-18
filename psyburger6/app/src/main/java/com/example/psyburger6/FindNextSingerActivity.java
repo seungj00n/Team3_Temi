@@ -58,6 +58,13 @@ public class FindNextSingerActivity extends Activity implements
         robot = Robot.getInstance();
         start_searching = findViewById(R.id.start_searching);
 
+        //import java.util.Random; 추가 해야됨
+        //랜덤 지점으로 이동하는 부분
+        ramdom_map();
+        TtsRequest ttsRequest = TtsRequest.create("노래 부를 분을 찾습니다.", false);
+        robot.speak(ttsRequest);
+        //
+
         ImageButton goHome = (ImageButton) findViewById(R.id.gohome);
         goHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,29 +73,12 @@ public class FindNextSingerActivity extends Activity implements
                 startActivity(intent);
             }
         });
-
-        Button temifind = findViewById(R.id.test1);
-
-        temifind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), TagCardActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //랜덤 찾는 버튼
         start_searching.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //import java.util.Random; 추가 해야됨
-                //랜덤 각도 넣어서 이동하는 것
-
-                ramdom_map();
-                TtsRequest ttsRequest = TtsRequest.create("노래 부를 분을 찾습니다.", false);
-                robot.speak(ttsRequest);
-
-                //robot.beWithMe();
+                robot.stopMovement();
+                Intent intent = new Intent(getApplicationContext(), TagCardActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -138,7 +128,6 @@ public class FindNextSingerActivity extends Activity implements
                 class MyThread extends Thread {
                     public MyThread() {
                     }
-
                     @Override
                     public void run() {
                         Log.i("thread", "Thread is running");
@@ -151,10 +140,10 @@ public class FindNextSingerActivity extends Activity implements
                 thread.start();
             }
         }
-    }
-
-    public static void sleep(long millis) throws InterruptedException {
-        Thread.currentThread().sleep(millis);
+        //만약 가로막혔을 경우
+        else if(status.equals("abort")){
+            robot.beWithMe(); //그냥 거기서 실행
+        }
     }
 
     public void onBeWithMeStatusChanged(String status){
