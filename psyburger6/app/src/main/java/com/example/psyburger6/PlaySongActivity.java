@@ -1,10 +1,17 @@
 package com.example.psyburger6;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -21,6 +28,48 @@ public class PlaySongActivity extends Activity implements
     String movement_state;
     double dance_speed = 0.1;
 
+    private WebView webView;
+    private String HTMLFormat = "<!DOCTYPE html>" +
+            "<html lang=\"en\">" +
+            "<head>" +
+            "    <meta charset=\"UTF-8\">" +
+            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" +
+            "    <meta http-equiv=\"Content-Security-Policy\" content=\"upgrade-insecure-requests\">" +
+            "    <title>YouTube API Example</title>" +
+            "    <script src=\"https://www.youtube.com/iframe_api\"></script>" +
+            "" +
+            "</head>" +
+            "<body>" +
+            "<div id=\"player\"></div>" +
+            "" +
+            "<script>" +
+            "        var player;" +
+            "" +
+            "        function onYouTubeIframeAPIReady() {" +
+            "            player = new YT.Player('player', {" +
+            "                height: '600'," +
+            "                width: '1080'," +
+            "                videoId: 'TARGETVIDEOID'," +
+            "                events: {" +
+            "                    'onReady': onPlayerReady," +
+            "                    'onStateChange': onPlayerStateChange" +
+            "                }" +
+            "            });" +
+            "        }" +
+            "" +
+            "        function onPlayerReady(event) {" +
+            "            event.target.playVideo();" +
+            "        }" +
+            "" +
+            "        function onPlayerStateChange(event) {" +
+            "            if (event.data == YT.PlayerState.ENDED) {" +
+            "                Android.onVideoEnded(true);" +
+            "            }" +
+            "        }" +
+            "    </script>" +
+            "</body>" +
+            "</html>";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +81,26 @@ public class PlaySongActivity extends Activity implements
         //Log.i("movement","motion1");
         robot.turnBy(30, (float)0.3);
         robot.tiltAngle(35, (float)0.5); // -25도에서 50도가 범위
+
+        //Youtube 실행
+        webView = findViewById(R.id.webView);
+        // JavaScript를 활성화합니다.
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
+        // JavaScript 인터페이스를 설정합니다.
+        webView.addJavascriptInterface(new PlaySongActivity.JavaScriptInterface(), "Android");
+        //webView.addJavascriptInterface(new PlaySongActivity.JavaScriptInterface());
+
+        // WebViewClient를 설정하여 외부 링크가 기본 브라우저로 열리지 않도록 합니다.
+        webView.setWebViewClient(new WebViewClient());
+        // WebChromeClient를 설정하여 JavaScript의 alert 등을 처리합니다.
+        webView.setWebChromeClient(new WebChromeClient());
+
+        Intent intent = getIntent();
+        String videoid = intent.getStringExtra("VideoID");
+        //영상 실행
+        webView.loadData(HTMLFormat.replace("TARGETVIDEOID", videoid), "text/html", "utf-8");
 
         ImageButton goHome = (ImageButton) findViewById(R.id.gohome);
         goHome.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +170,31 @@ public class PlaySongActivity extends Activity implements
             Log.i("abort", "혼잡 상황");
         }
 
+    }
+
+    // JavaScript에서 Android 메서드를 호출할 수 있도록 하는 인터페이스
+    public class JavaScriptInterface {
+        @JavascriptInterface
+        public void onVideoEnded(boolean isEnded) {
+            // JavaScript에서 호출되면 영상 종료 여부를 처리합니다.
+            if (isEnded) {
+                // 영상이 종료된 경우
+                Log.d("main", "done");
+                Intent intent = new Intent(getApplicationContext(), FindNextSingerActivity.class);
+                startActivity(intent);
+            } else {
+                // 영상이 종료되지 않은 경우
+                Log.d("main", "running");
+            }
+        }
+        public void onVideoPlaying(boolean isPlaying){
+            if(isPlaying){
+                Log.d("Main", "Playing");
+            }
+            else{
+                Log.d("Main", "Pass");
+            }
+        }
     }
 
 
