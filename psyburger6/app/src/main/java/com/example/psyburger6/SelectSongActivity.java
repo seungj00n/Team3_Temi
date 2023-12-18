@@ -29,7 +29,7 @@ public class SelectSongActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), PlaySongActivity.class);
-                intent.putExtra("VideoID", "EVOApxDFozw");
+                intent.putExtra("VideoID", "2-JDFpplFLs");
                 startActivity(intent);
             }
         });
