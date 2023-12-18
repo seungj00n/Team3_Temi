@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    package="com.example.psyburger6">
 
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Temi_Project"
-        tools:targetApi="31">
+        android:theme="@style/Theme.Psyburger6">
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -20,6 +18,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".FindNextSingerActivity"></activity>
+        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".TagCardActivity"></activity>
+        <activity android:name=".SelectSongActivity"></activity>
+        <activity android:name=".PlaySongActivity"></activity>
+        <activity android:name=".HappyResultActivity"></activity>
+        <activity android:name=".SadResultActivity"></activity>
+        <activity android:name=".RecomSongActivity"></activity>
+        <activity android:name=".CallWhoActivity"></activity>
+        <activity android:name=".EnergyActivity"></activity>
+        <meta-data
+            android:name="com.robotemi.sdk.metadata.SKILL"
+            android:value="@string/app_name" />
     </application>
 
 </manifest>

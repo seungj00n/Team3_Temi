@@ -3,13 +3,12 @@ plugins {
 }
 
 android {
-    namespace 'com.example.temi_project'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.temi_project"
+        applicationId "com.example.psyburger6"
         minSdk 23
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -29,7 +28,7 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.robotemi:sdk:0.10.77'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
