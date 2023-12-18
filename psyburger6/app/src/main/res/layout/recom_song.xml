@@ -21,12 +21,20 @@
             android:layout_gravity="top|right" />
 
         <Button
-            android:id="@+id/gosong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="940dp"
+            android:id="@+id/gosong1"
+            android:layout_width="303dp"
+            android:layout_height="135dp"
+            android:layout_marginLeft="870dp"
             android:layout_marginTop="200dp"
-            android:text="영탁 - 막걸리 한 잔"/>
+            android:text="싸이 - 강남스타일" />
+
+        <Button
+            android:id="@+id/gosong2"
+            android:layout_width="303dp"
+            android:layout_height="135dp"
+            android:layout_marginLeft="870dp"
+            android:layout_marginTop="400dp"
+            android:text="영탁 - 막걸리 한 잔" />
     </FrameLayout>
 
 </LinearLayout>
