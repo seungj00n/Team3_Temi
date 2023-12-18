@@ -65,6 +65,9 @@ public class PlaySongActivity extends Activity implements
             "            if (event.data == YT.PlayerState.ENDED) {" +
             "                Android.onVideoEnded(true);" +
             "            }" +
+            "            else if (event.data == YT.PlayerState.PLAYING) {" +
+            "                Android.onVideoPlaying(true);" +
+            "            }" +
             "        }" +
             "    </script>" +
             "</body>" +
@@ -90,7 +93,6 @@ public class PlaySongActivity extends Activity implements
 
         // JavaScript 인터페이스를 설정합니다.
         webView.addJavascriptInterface(new PlaySongActivity.JavaScriptInterface(), "Android");
-        //webView.addJavascriptInterface(new PlaySongActivity.JavaScriptInterface());
 
         // WebViewClient를 설정하여 외부 링크가 기본 브라우저로 열리지 않도록 합니다.
         webView.setWebViewClient(new WebViewClient());
@@ -179,20 +181,23 @@ public class PlaySongActivity extends Activity implements
             // JavaScript에서 호출되면 영상 종료 여부를 처리합니다.
             if (isEnded) {
                 // 영상이 종료된 경우
-                Log.d("main", "done");
+                Log.d("Youtube", "Video Ended");
                 Intent intent = new Intent(getApplicationContext(), FindNextSingerActivity.class);
                 startActivity(intent);
             } else {
                 // 영상이 종료되지 않은 경우
-                Log.d("main", "running");
+                Log.d("Youtube", "Video not Ended");
             }
         }
+
+        @JavascriptInterface
         public void onVideoPlaying(boolean isPlaying){
             if(isPlaying){
-                Log.d("Main", "Playing");
+                Log.d("Youtube", "Playing");
+
             }
             else{
-                Log.d("Main", "Pass");
+                Log.d("Youtube", "Stopped Playing");
             }
         }
     }

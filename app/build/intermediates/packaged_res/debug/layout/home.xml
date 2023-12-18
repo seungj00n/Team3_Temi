@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/settingbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/settingbutton"
+            android:adjustViewBounds="true"
+            android:background="#00000000"
+            android:scaleType="fitXY"
+            android:layout_gravity="top|right" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="570dp"
+            android:src="@drawable/belt"
+            android:layout_marginRight="400dp"
+            android:adjustViewBounds="true"
+            android:background="#00000000"
+            android:scaleType="fitXY"
+            android:layout_gravity="center_vertical|right"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="415dp"
+            android:layout_height="570dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="30dp">
+
+            <ImageButton
+                android:id="@+id/random"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/random"
+                android:adjustViewBounds="true"
+                android:background="#00000000"
+                android:scaleType="fitXY" />
+
+            <ImageButton
+                android:id="@+id/target"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:src="@drawable/target"
+                android:adjustViewBounds="true"
+                android:background="#00000000"
+                android:scaleType="fitXY" />
+
+            <ImageButton
+                android:id="@+id/call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/call"
+                android:adjustViewBounds="true"
+                android:background="#00000000"
+                android:scaleType="fitXY" />
+
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
