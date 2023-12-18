@@ -24,8 +24,18 @@ public class RecomSongActivity extends Activity {
             }
         });
 
-        Button playSong = findViewById(R.id.gosong);
-        playSong.setOnClickListener(new View.OnClickListener() {
+        Button playSong1 = findViewById(R.id.gosong1);
+        playSong1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PlaySongActivity.class);
+                intent.putExtra("VideoID", "l20_tcPAhFA");
+                startActivity(intent);
+            }
+        });
+
+        Button playSong2 = findViewById(R.id.gosong2);
+        playSong2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), PlaySongActivity.class);
@@ -34,5 +44,14 @@ public class RecomSongActivity extends Activity {
             }
         });
 
+        Button playSong3 = findViewById(R.id.gosong3);
+        playSong3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PlaySongActivity.class);
+                intent.putExtra("VideoID", "iCPqfZYA-BQ");
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -26,15 +26,26 @@
             android:layout_height="135dp"
             android:layout_marginLeft="870dp"
             android:layout_marginTop="200dp"
-            android:text="싸이 - 강남스타일" />
+            android:textSize="25sp"
+            android:text="싸이\n강남스타일" />
 
         <Button
             android:id="@+id/gosong2"
             android:layout_width="303dp"
             android:layout_height="135dp"
             android:layout_marginLeft="870dp"
-            android:layout_marginTop="400dp"
-            android:text="영탁 - 막걸리 한 잔" />
+            android:layout_marginTop="350dp"
+            android:textSize="25sp"
+            android:text="오승근\n내 나이가 어때서" />
+
+        <Button
+            android:id="@+id/gosong3"
+            android:layout_width="303dp"
+            android:layout_height="135dp"
+            android:layout_marginLeft="870dp"
+            android:layout_marginTop="500dp"
+            android:textSize="25sp"
+            android:text="파테코\n너를 떠올리는 중이야" />
     </FrameLayout>
 
 </LinearLayout>
