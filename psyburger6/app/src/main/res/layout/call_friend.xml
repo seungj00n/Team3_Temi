@@ -26,17 +26,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/call_test"
-            android:layout_width="121dp"
-            android:layout_height="72dp"
-            android:text="test_call"
+        <ListView
+            android:id="@+id/menber_List"
+            android:layout_width="410dp"
+            android:layout_height="547dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.741"
+            app:layout_constraintHorizontal_bias="0.934"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.314" />
+            app:layout_constraintVertical_bias="0.589" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
