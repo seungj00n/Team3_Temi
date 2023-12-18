@@ -29,6 +29,7 @@ public class PlaySongActivity extends Activity implements
     double dance_speed = 0.1;
 
     private WebView webView;
+    //670, 1270
     private String HTMLFormat = "<!DOCTYPE html>" +
             "<html lang=\"en\">" +
             "<head>" +
@@ -47,8 +48,8 @@ public class PlaySongActivity extends Activity implements
             "" +
             "        function onYouTubeIframeAPIReady() {" +
             "            player = new YT.Player('player', {" +
-            "                height: '600'," +
-            "                width: '1080'," +
+            "                height: '670'," +
+            "                width: '1270'," +
             "                videoId: 'TARGETVIDEOID'," +
             "                events: {" +
             "                    'onReady': onPlayerReady," +

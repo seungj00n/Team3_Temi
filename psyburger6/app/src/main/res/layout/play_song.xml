@@ -10,17 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="687dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageButton
             android:id="@+id/gohome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/gohome"
-            android:adjustViewBounds="true"
+            android:layout_marginLeft="1200dp"
             android:background="#00000000"
             android:scaleType="fitXY"
-            android:layout_gravity="top|right" />
+            android:src="@drawable/gohome" />
+
         <Button
             android:id="@+id/happysong"
             android:layout_width="wrap_content"
@@ -37,14 +45,7 @@
             android:layout_marginTop="700dp"
             android:text="우울한 노래를 불렀을 때"/>
 
-        <WebView
-            android:id="@+id/webView"
-            android:layout_width="1146dp"
-            android:layout_height="580dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="25dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
     </FrameLayout>
 
