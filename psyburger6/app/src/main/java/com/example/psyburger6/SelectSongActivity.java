@@ -34,6 +34,11 @@ public class SelectSongActivity extends Activity implements Robot.AsrListener{
     Robot robot;
     String stt_data;
 
+    Button goToRecom;
+    Button playSong;
+
+    int stt_responce;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +58,7 @@ public class SelectSongActivity extends Activity implements Robot.AsrListener{
             }
         });
 
-        Button playSong = findViewById(R.id.gosong);
+        playSong = findViewById(R.id.gosong);
         playSong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +73,7 @@ public class SelectSongActivity extends Activity implements Robot.AsrListener{
             }
         });
 
-        Button goToRecom = findViewById(R.id.recom);
+        goToRecom = findViewById(R.id.recom);
         goToRecom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,32 +105,15 @@ public class SelectSongActivity extends Activity implements Robot.AsrListener{
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         robot.addAsrListener(this);
     }
 
     @Override
-    protected  void onStop(){
+    protected void onStop() {
         super.onStop();
         robot.removeAsrListener(this);
-    }
-
-    private String processString(String inputString) {
-        System.out.println(inputString);
-        if (inputString.contains("감정") || inputString.contains("우울증")) {
-            //return "7" + "|" + seed;
-            return "7";
-        } else if (inputString.contains("들려") || inputString.contains("틀어") || inputString.contains("알려")) {
-            //return "8" + "|" + inputString;
-            return "8";
-        } else if (inputString.contains("추천")) {
-            //return "6" + "|" + seed;
-            return "6";
-        } else {
-            //System.out.println(-1);
-            return "-1";
-        }
     }
 
     public void onAsrResult(String asrResult){
@@ -202,4 +190,57 @@ public class SelectSongActivity extends Activity implements Robot.AsrListener{
         }
 
     }
+  /*
+    //이동 파트
+    //asrResult가 음성 string 데이터다.
+    public void onAsrResult(String asrResult) {
+
+        //stt_responce에 따라 인텐트 넘어가게 한다.
+        stt_data = asrResult;
+        robot.finishConversation();
+
+        //반환 값에 해당하는 버튼 실행 지금은 1번이면 노래 부르는 파트로 이동하고 2번이면 추천 파트로 넘어간다.
+        stt_responce = processString(stt_data);
+        Log.i("words", stt_data);
+        if(stt_responce == 1){
+            //해당 버튼 누르기
+            playSong.performClick();
+        }
+        if(stt_responce == 2){
+            goToRecom.performClick();
+        }
+    }
+  */
+  
+    private String processString(String inputString) {
+        System.out.println(inputString);
+        if (inputString.contains("감정") || inputString.contains("우울증")) {
+            //return "7" + "|" + seed;
+            return "7";
+        } else if (inputString.contains("들려") || inputString.contains("틀어") || inputString.contains("알려")) {
+            //return "8" + "|" + inputString;
+            return "8";
+        } else if (inputString.contains("추천")) {
+            //return "6" + "|" + seed;
+            return "6";
+        } else {
+            //System.out.println(-1);
+            return "-1";
+        }
+    }
+  /*
+    private int processString(String inputString) {
+        if (inputString.contains("감정") || inputString.contains("우울증")) {
+            return 0;
+        } else if (inputString.contains("들려줘") || inputString.contains("틀어줘")) {
+            return 1;
+        } else if (inputString.contains("추천해 줘")) {
+            return 2;
+        } else {
+            return -1;
+        }
+
+    }
+    //이동 파트
+    */
 }

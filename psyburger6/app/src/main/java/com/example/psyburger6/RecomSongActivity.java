@@ -7,12 +7,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import com.robotemi.sdk.Robot;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-public class RecomSongActivity extends Activity {
+public class RecomSongActivity extends Activity implements
+        Robot.AsrListener{
+
 
     String data;
     ArrayList<Button> btns = new ArrayList();
@@ -26,11 +29,17 @@ public class RecomSongActivity extends Activity {
 
     server s = new server();
     file_io f = new file_io();
+    Robot robot;
 
+    String stt_data;
+    int stt_responce;
+
+    
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recom_song);
+        robot = Robot.getInstance();
 
         Button btn1 = findViewById(R.id.gosong1);
         btns.add(btn1);
@@ -145,4 +154,36 @@ public class RecomSongActivity extends Activity {
         Log.d("Added Data", data_from_server);
         return data_from_server;
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        robot.addAsrListener(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        robot.removeAsrListener(this);
+    }
+ //sst 받는 파트
+    public void onAsrResult(String asrResult) {
+        /*
+        //stt_responce에 따라 인텐트 넘어가게 한다.
+        stt_data = asrResult;
+        robot.finishConversation();
+
+        //반환 값에 해당하는 버튼 실행 지금은 1번이면 노래 부르는 파트로 이동하고 2번이면 추천 파트로 넘어간다.
+        stt_responce = processString(stt_data);
+        Log.i("words", stt_data);
+        if(stt_responce == 1){
+            //task_실행
+        }
+        if(stt_responce == 2){
+            //task_실행
+        }
+
+         */
+    }
+
 }
