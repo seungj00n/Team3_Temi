@@ -32,7 +32,7 @@ public class HomeActivity extends Activity implements
         ImageButton targetButton = (ImageButton) findViewById(R.id.target);
         ImageButton callFriend = (ImageButton) findViewById(R.id.call);
 
-        finish_button = findViewById(R.id.finish);
+        //finish_button = findViewById(R.id.finish);
 
         randomButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,8 @@ public class HomeActivity extends Activity implements
                 f.writeToFile(abnormal, getApplicationContext(), "4.txt");
                 f.writeToFile(abnormal, getApplicationContext(), "5.txt");
 
-                f.writeToFile(" , \n , \n , \n , ", getApplicationContext(), "Log.txt");
+                //f.writeToFile(" , \n , \n , \n , ", getApplicationContext(), "Log.txt");
+                f.writeToFile("2023-01-15 10:30:45 1 0\n2023-01-15 10:35:20 3 -1\n2023-01-15 10:40:12 2 0", getApplicationContext(), "Log.txt");
 
                 Log.d("Dummy Create", "Done");
             }
@@ -98,11 +99,13 @@ public class HomeActivity extends Activity implements
         CheckLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SadResultActivity.class);
+                //Intent intent = new Intent(getApplicationContext(), SadResultActivity.class);
+                Intent intent = new Intent(getApplicationContext(), log_activity.class);
                 startActivity(intent);
             }
         });
 
+        /*
         finish_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +114,7 @@ public class HomeActivity extends Activity implements
                 startActivity(intent);
             }
         });
-
+        */
     }
 
     @Override

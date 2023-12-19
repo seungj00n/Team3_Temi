@@ -170,25 +170,33 @@ public class SelectSongActivity extends Activity implements Robot.AsrListener{
             String[] datas = data.split("<1>");
             String videoid = datas[0];
             videoid = videoid.replace(System.getProperty("line.separator"), "");
-            String title = datas[1];
-            String singer = datas[2];
+
             s = null;
 
-            file_io f = new file_io();
-            String txt = f.readFromFile(getApplicationContext(), f.string_to_file(id));
+            try{
+                String title = datas[1];
+                String singer = datas[2];
 
-            //String new_data = "[['" + title + "', '" + singer + "']]";
-            //s = new server();
-            //s.run(9, txt, new_data);
-            //while(!s.flag) continue;
-            //String data_from_server = s.data;
-            //Log.d("Added Data", data_from_server);
+                file_io f = new file_io();
+                String txt = f.readFromFile(getApplicationContext(), f.string_to_file(id));
 
-            //f.writeToFile(data_from_server, getApplicationContext(), f.string_to_file(id));
+                String new_data = "[['" + title + "', '" + singer + "']]";
+                s = new server();
+                s.run(9, txt, new_data);
+                while(!s.flag) continue;
+                String data_from_server = s.data;
+                Log.d("Added Data", data_from_server);
+
+                f.writeToFile(data_from_server, getApplicationContext(), f.string_to_file(id));
+            }catch(Exception e){
+                Log.d("Exception", e.getMessage());
+            };
+
 
             Log.d("Video ID", videoid);
             Intent intent = new Intent(getApplicationContext(), PlaySongActivity.class);
             intent.putExtra("VideoID", videoid);
+            intent.putExtra("ID", id);
             startActivity(intent);
         }
 

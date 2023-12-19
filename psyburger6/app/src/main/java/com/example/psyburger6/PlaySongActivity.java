@@ -20,6 +20,12 @@ import androidx.annotation.Nullable;
 import com.robotemi.sdk.Robot;
 import com.robotemi.sdk.listeners.OnMovementStatusChangedListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import java.util.Locale;
+
 public class PlaySongActivity extends Activity implements
         OnMovementStatusChangedListener { //리스너 추가 부분
 
@@ -147,6 +153,7 @@ public class PlaySongActivity extends Activity implements
 
                 String id = intent.getStringExtra("ID");
 
+
                 if(s.data != "-1"){
                     String log_b = f.readFromFile(getApplicationContext(), "Log.txt");
                     String log_n = id + "," + s.data + "\n" + log_b;
@@ -250,9 +257,14 @@ public class PlaySongActivity extends Activity implements
                 while(!s.flag) continue;
                 String result = s.data;
 
-                if(result != "-1"){
+                if (!"-1".equals(result)) {
                     String log_b = f.readFromFile(getApplicationContext(), "Log.txt");
-                    String log_n = log_b + "\n" + id + " " + result;
+
+                    // 현재 날짜 정보를 가져오기
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                    String currentDate = dateFormat.format(new Date());
+
+                    String log_n = log_b + "\n" + currentDate + " " + id + " " + result;
                     f.writeToFile(log_n, getApplicationContext(), "Log.txt");
                 }
 

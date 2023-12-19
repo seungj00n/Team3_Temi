@@ -93,7 +93,9 @@ public class server {
             else{*/
                 try {
                     //Socket socket = new Socket("3.16.64.115", 3333); // 서버 IP 주소와 포트를 수정하세요
-                    Socket socket = new Socket("172.100.1.162", 3333);
+                    Socket socket = new Socket("3.16.64.115", 3333);
+
+                    //Socket socket = new Socket("172.100.1.162", 3333);
                     OutputStream outputStream = socket.getOutputStream();
                     outputStream.write(message.getBytes());
 
