@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -25,6 +26,7 @@ public class log_activity extends AppCompatActivity {
         //리스트뷰 설정
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, input_data);
+
         log_List.setAdapter(adapter);
 
         ImageButton home_button = (ImageButton) findViewById(R.id.home_button);

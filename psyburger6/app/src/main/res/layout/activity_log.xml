@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".log_activity"
-    android:background="@drawable/talk">
+    android:background="@drawable/Depressed">
 
     <ImageButton
         android:id="@+id/home_button"
@@ -27,7 +27,7 @@
         android:id="@+id/log_List"
         android:layout_width="870dp"
         android:layout_height="589dp"
-        android:textSize="50dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.797"
