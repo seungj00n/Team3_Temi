@@ -23,8 +23,8 @@
             android:id="@+id/gohome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="1200dp"
+            android:layout_marginTop="710dp"
+            android:layout_marginLeft="50dp"
             android:background="#00000000"
             android:scaleType="fitXY"
             android:src="@drawable/gohome" />

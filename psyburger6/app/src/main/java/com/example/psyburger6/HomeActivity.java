@@ -67,6 +67,42 @@ public class HomeActivity extends Activity implements
             }
         });
 
+
+        Button createDummy = findViewById(R.id.dummybtn);
+        createDummy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                file_io f = new file_io();
+
+                String normal = "[[\"곡명\", \"가수\", \"ID\", \"Energy\", \"Valence\"], [\"mistaken\", \"양다일\", \"7c8cPVLWvtZwxDxA3KkWFP\", 0.419, 0.29], [\"천년의 사랑\", \"박완규\", \"29FS4aopbu0HWQ2GSFalvy\", 0.559, 0.153], [\"사랑이란 멜로는 없어\", \"Jeon Sang Geun\", \"0CGovscVJUxLASfj6KnVwO\", 0.476, 0.316], [\"눈의 꽃 - 미안하다, 사랑한다 (Original Television Soundtrack)\", \"박효신\", \"2KLL68vmqVDdhL7J9lquMb\", 0.354, 0.239], [\"그대라는 사치\", \"한동근\", \"37dkyQQNJLaqk09kkNr7In\", 0.444, 0.269], [\"Gangnam Style (강남스타일)\", \"싸이\", \"5c58c6sKc2JK3o75ZBSeL1\", 0.932, 0.731]]";
+                f.writeToFile(normal, getApplicationContext(), "1.txt");
+
+                String abnormal = "[[\"강남스타일\", \"싸이\"], [\"Doc와 함께 춤을\", \"DJ Doc\"], [\"칵테일 사랑\", \"마로니에\"], [\"Yes or Yes\", \"Twice\"], [\"너를 사랑하지 않아\", \"양다일\"], [\"천년의 사랑\", \"박완규\"], [\"사랑이란 멜로는 없어\", \"전상근\"], [\"눈의 꽃\", \"박효신\"], [\"그대라는 사치\", \"한동근\"]]";
+                server s = new server();
+                s.run(9, "[]", abnormal);
+                while(!s.flag) continue;
+                abnormal = s.data;
+
+                f.writeToFile(abnormal, getApplicationContext(), "2.txt");
+                f.writeToFile(abnormal, getApplicationContext(), "3.txt");
+                f.writeToFile(abnormal, getApplicationContext(), "4.txt");
+                f.writeToFile(abnormal, getApplicationContext(), "5.txt");
+
+                f.writeToFile(" , \n , \n , \n , ", getApplicationContext(), "Log.txt");
+
+                Log.d("Dummy Create", "Done");
+            }
+        });
+
+        Button CheckLog = findViewById(R.id.checklog);
+        CheckLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SadResultActivity.class);
+                startActivity(intent);
+            }
+        });
+
         finish_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
