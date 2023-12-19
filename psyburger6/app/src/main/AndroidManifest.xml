@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.psyburger6">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission><uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Psyburger6">
         <activity
+            android:name=".log_activity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -20,17 +24,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".FindNextSingerActivity"></activity>
-        <activity android:name=".SettingActivity"></activity>
-        <activity android:name=".TagCardActivity"></activity>
-        <activity android:name=".SelectSongActivity"></activity>
-        <activity android:name=".PlaySongActivity"></activity>
-        <activity android:name=".HappyResultActivity"></activity>
-        <activity android:name=".SadResultActivity"></activity>
-        <activity android:name=".RecomSongActivity"></activity>
-        <activity android:name=".CallWhoActivity"></activity>
-        <activity android:name=".EnergyActivity"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".FindNextSingerActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".TagCardActivity" />
+        <activity android:name=".SelectSongActivity" />
+        <activity android:name=".PlaySongActivity" />
+        <activity android:name=".HappyResultActivity" />
+        <activity android:name=".SadResultActivity" />
+        <activity android:name=".RecomSongActivity" />
+        <activity android:name=".CallWhoActivity" />
+        <activity android:name=".EnergyActivity" />
+
         <meta-data
             android:name="com.robotemi.sdk.metadata.SKILL"
             android:value="@string/app_name" />

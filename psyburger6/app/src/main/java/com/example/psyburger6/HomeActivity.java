@@ -6,6 +6,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ public class HomeActivity extends Activity implements
         Robot.AsrListener {
 
     Robot robot;
+    Button finish_button;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class HomeActivity extends Activity implements
         ImageButton goSetting = (ImageButton) findViewById(R.id.settingbutton);
         ImageButton targetButton = (ImageButton) findViewById(R.id.target);
         ImageButton callFriend = (ImageButton) findViewById(R.id.call);
+
+        finish_button = findViewById(R.id.finish);
 
         randomButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +66,16 @@ public class HomeActivity extends Activity implements
                 startActivity(intent);
             }
         });
+
+        finish_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), log_activity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
