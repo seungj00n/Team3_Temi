@@ -77,5 +77,13 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="650dp"
             android:text="Add Dummy Files" />
+
+        <Button
+            android:id="@+id/checklog"
+            android:layout_width="241dp"
+            android:layout_height="77dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="550dp"
+            android:text="Check Log" />
     </FrameLayout>
 </LinearLayout>

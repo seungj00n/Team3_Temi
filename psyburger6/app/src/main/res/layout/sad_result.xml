@@ -12,13 +12,36 @@
             android:id="@+id/gohome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginRight="1100dp"
+            android:layout_marginTop="600dp"
             android:src="@drawable/gohome"
             android:adjustViewBounds="true"
             android:background="#00000000"
             android:scaleType="fitXY"
             android:layout_gravity="top|right" />
+
+        <Button
+            android:id="@+id/LogText1"
+            android:layout_width="784dp"
+            android:layout_height="87dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="450dp"
+            android:text="" />
+        <Button
+            android:id="@+id/LogText2"
+            android:layout_width="784dp"
+            android:layout_height="87dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="550dp"
+            android:text="" />
+
+        <Button
+            android:id="@+id/LogText3"
+            android:layout_width="784dp"
+            android:layout_height="87dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="650dp"
+            android:text="" />
     </FrameLayout>
 
 </LinearLayout>

@@ -35,16 +35,28 @@ public class TagCardActivity extends Activity {
         goToSelectSong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                id = "1";
+                //id = "1";
+
+                server s = new server();
+                s.run(1, "-");
+                while(!s.flag) continue;
+                String id = s.data;
 
                 Intent intent = new Intent(getApplicationContext(), SelectSongActivity.class);
                 intent.putExtra("ID", id);
                 startActivity(intent);
             }
         });
+
+        server s = new server();
+        s.wait_for_data();
+        while(!s.flag) continue;
+        String id = s.data;
+
+        Intent intent = new Intent(getApplicationContext(), SelectSongActivity.class);
+        intent.putExtra("ID", id);
+        startActivity(intent);
     }
-
-
 
     public void read_id(){
         file_io f = new file_io();

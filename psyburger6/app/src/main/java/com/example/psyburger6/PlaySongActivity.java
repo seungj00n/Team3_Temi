@@ -77,6 +77,8 @@ public class PlaySongActivity extends Activity implements
             "</body>" +
             "</html>";
 
+    Intent intent;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +102,7 @@ public class PlaySongActivity extends Activity implements
         // WebChromeClient를 설정하여 JavaScript의 alert 등을 처리합니다.
         webView.setWebChromeClient(new WebChromeClient());
 
-        Intent intent = getIntent();
+        intent = getIntent();
         String videoid = intent.getStringExtra("VideoID");
         //영상 실행
         webView.loadData(HTMLFormat.replace("TARGETVIDEOID", videoid), "text/html", "utf-8");
@@ -121,7 +123,7 @@ public class PlaySongActivity extends Activity implements
                 server s = new server();
                 file_io f = new file_io();
                 String data = f.readFromFile(getApplicationContext(), f.string_to_file("1"));
-                s.run(4, data);
+                s.run(7, data);
                 while(!s.flag) continue;
 
                 Log.d("Normal Test", s.data);
@@ -138,10 +140,20 @@ public class PlaySongActivity extends Activity implements
                 server s = new server();
                 file_io f = new file_io();
                 String data = f.readFromFile(getApplicationContext(), f.string_to_file("2"));
-                s.run(4, data);
+                s.run(7, data);
                 while(!s.flag) continue;
 
                 Log.d("Abnormal Test", s.data);
+
+                String id = intent.getStringExtra("ID");
+
+                if(s.data != "-1"){
+                    String log_b = f.readFromFile(getApplicationContext(), "Log.txt");
+                    String log_n = id + "," + s.data + "\n" + log_b;
+                    f.writeToFile(log_n, getApplicationContext(), "Log.txt");
+                    Log.d("Log", "Saved" + s.data);
+                    Log.d("Log data", log_n);
+                }
 
                 //Intent intent = new Intent(getApplicationContext(), SadResultActivity.class);
                 //startActivity(intent);
@@ -229,8 +241,23 @@ public class PlaySongActivity extends Activity implements
                 Playing_satae = "stop";
                 robot.stopMovement();
                 Log.d("Youtube", "Video Ended");
-                Intent intent = new Intent(getApplicationContext(), FindNextSingerActivity.class);
-                startActivity(intent);
+
+                server s = new server();
+                file_io f = new file_io();
+                String id = intent.getStringExtra("ID");
+                String data = f.readFromFile(getApplicationContext(), f.string_to_file(id));
+                s.run(4, data);
+                while(!s.flag) continue;
+                String result = s.data;
+
+                if(result != "-1"){
+                    String log_b = f.readFromFile(getApplicationContext(), "Log.txt");
+                    String log_n = log_b + "\n" + id + " " + result;
+                    f.writeToFile(log_n, getApplicationContext(), "Log.txt");
+                }
+
+                Intent intent_ = new Intent(getApplicationContext(), FindNextSingerActivity.class);
+                startActivity(intent_);
             } else {
                 // 영상이 종료되지 않은 경우
                 Log.d("Youtube", "Video not Ended");

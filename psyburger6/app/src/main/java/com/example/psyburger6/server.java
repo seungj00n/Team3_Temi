@@ -16,13 +16,22 @@ public class server {
     public String data;
     public boolean flag;
 
+    public server(){
+        flag = false;
+    }
+
     public void run(int method, String seed){
         flag = false;
-        new SocketTask(method + "**" + seed).execute();
+        new SocketTask(method + "|" + seed).execute();
     }
     public void run(int method, String seed, String new_data){
         flag = false;
-        new SocketTask(method + "**" + seed + "%%%" + new_data).execute();
+        new SocketTask(method + "|" + seed + "**" + new_data).execute();
+    }
+
+    public void wait_for_data(){
+        flag = false;
+        new SocketTask("wait").execute();
     }
 
     private class SocketTask extends AsyncTask<Void, Void, String> {
@@ -36,26 +45,49 @@ public class server {
         @Override
         protected String doInBackground(Void... params) {
             String result = "-1";
-            try {
-                Socket socket = new Socket("172.100.1.162", 3333); // 서버 IP 주소와 포트를 수정하세요
-                OutputStream outputStream = socket.getOutputStream();
-                outputStream.write(message.getBytes());
+            if(message == "wait"){
+                try{
+                    Socket socket = new Socket("3.16.64.115", 3333);
 
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                StringBuilder stringBuilder = new StringBuilder();
-                String line;
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String line;
 
-                while ((line = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(line).append("\n");
+                    while ((line = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(line).append("\n");
+                    }
+
+                    bufferedReader.close();
+                    socket.close();
+
+                    result = stringBuilder.toString();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-                bufferedReader.close();
-                socket.close();
-
-                result = stringBuilder.toString();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+            else{
+                try {
+                    Socket socket = new Socket("3.16.64.115", 3333); // 서버 IP 주소와 포트를 수정하세요
+                    OutputStream outputStream = socket.getOutputStream();
+                    outputStream.write(message.getBytes());
+
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String line;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(line).append("\n");
+                    }
+
+                    bufferedReader.close();
+                    socket.close();
+
+                    result = stringBuilder.toString();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
 
             Log.d("server class", result);
             data = result.replace(System.getProperty("line.separator"), "");;

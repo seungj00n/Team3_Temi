@@ -75,13 +75,27 @@ public class HomeActivity extends Activity implements
 
                 String abnormal = "[[\"강남스타일\", \"싸이\"], [\"Doc와 함께 춤을\", \"DJ Doc\"], [\"칵테일 사랑\", \"마로니에\"], [\"Yes or Yes\", \"Twice\"], [\"너를 사랑하지 않아\", \"양다일\"], [\"천년의 사랑\", \"박완규\"], [\"사랑이란 멜로는 없어\", \"전상근\"], [\"눈의 꽃\", \"박효신\"], [\"그대라는 사치\", \"한동근\"]]";
                 server s = new server();
-                s.run(1, "[]", abnormal);
+                s.run(9, "[]", abnormal);
                 while(!s.flag) continue;
                 abnormal = s.data;
 
                 f.writeToFile(abnormal, getApplicationContext(), "2.txt");
+                f.writeToFile(abnormal, getApplicationContext(), "3.txt");
+                f.writeToFile(abnormal, getApplicationContext(), "4.txt");
+                f.writeToFile(abnormal, getApplicationContext(), "5.txt");
+
+                f.writeToFile(" , \n , \n , \n , ", getApplicationContext(), "Log.txt");
 
                 Log.d("Dummy Create", "Done");
+            }
+        });
+
+        Button CheckLog = findViewById(R.id.checklog);
+        CheckLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SadResultActivity.class);
+                startActivity(intent);
             }
         });
     }
