@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.robotemi.sdk.Robot;
 import com.robotemi.sdk.TtsRequest;
+import com.robotemi.sdk.UserInfo;
 import com.robotemi.sdk.listeners.OnBeWithMeStatusChangedListener;
 import com.robotemi.sdk.listeners.OnGoToLocationStatusChangedListener;
 import com.robotemi.sdk.listeners.OnMovementStatusChangedListener;
@@ -24,13 +25,15 @@ import java.util.concurrent.TimeUnit;
 public class FindNextSingerActivity extends Activity implements
         OnGoToLocationStatusChangedListener,
         OnMovementStatusChangedListener,
-        OnBeWithMeStatusChangedListener {
+        OnBeWithMeStatusChangedListener,
+        Robot.AsrListener{
 
     Button start_searching;
     Robot robot;
 
     //움직임 저장
     String moving_status;
+    String stt_data;
     int turn_count = 0;
 
     @Override
@@ -39,6 +42,7 @@ public class FindNextSingerActivity extends Activity implements
         robot.addOnGoToLocationStatusChangedListener(this);
         robot.addOnMovementStatusChangedListener(this);
         robot.addOnBeWithMeStatusChangedListener(this);
+        robot.addAsrListener(this);
     }
 
     @Override
@@ -47,6 +51,7 @@ public class FindNextSingerActivity extends Activity implements
         robot.removeOnGoToLocationStatusChangedListener(this);
         robot.removeOnMovementStatusChangedListener(this);
         robot.removeOnBeWithMeStatusChangedListener(this);
+        robot.removeAsrListener(this);
     }
 
     @Override
@@ -169,6 +174,26 @@ public class FindNextSingerActivity extends Activity implements
                 }
             }, 1500); //딜레이 타임 조절
         }
+    }
+
+    public void onAsrResult(String asrResult) {
+
+        //stt_responce에 따라 인텐트 넘어가게 한다.
+        stt_data = asrResult;
+        robot.finishConversation();
+        /* 반응 부분
+        //반환 값에 해당하는 버튼 실행 지금은 1번이면 노래 부르는 파트로 이동하고 2번이면 추천 파트로 넘어간다.
+        int stt_responce = processString(stt_data);
+        Log.i("words", stt_data);
+        if(stt_responce == 1){
+            //해당 버튼 누르기
+            playSong.performClick();
+        }
+        if(stt_responce == 2){
+            goToRecom.performClick();
+        }
+
+         */
     }
 
 }

@@ -101,7 +101,7 @@ public class CallWhoActivity extends Activity implements
         }
         else{
             List<UserInfo> menbers_info =  robot.getAllContact();
-            
+
             String temi_said = menbers_info.get(stt_responce).getName() + "님에게 전화를 걸겠습니다.";
             TtsRequest ttsRequest = TtsRequest.create(temi_said, false);
             //Log.i("position", Integer.toString(stt_responce));
