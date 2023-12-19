@@ -45,29 +45,55 @@ public class server {
         @Override
         protected String doInBackground(Void... params) {
             String result = "-1";
+            /*
             if(message == "wait"){
                 try{
-                    Socket socket = new Socket("3.16.64.115", 3333);
+                    //Log.d("Server", "Wait");
+                    //Socket socket = new Socket("3.16.64.115", 3333);
+                    Socket socket = new Socket("172.100.1.162", 3333);
 
+                    OutputStream outputStream = socket.getOutputStream();
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    StringBuilder stringBuilder = new StringBuilder();
-                    String line;
+                    String msg_tmp = "0|0";
 
-                    while ((line = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(line).append("\n");
+                    result = "aaaaaaaaa";
+                    while(result.length() > 5){
+                        Log.d("Hello", Integer.toString(result.length()));
+                        outputStream.write(msg_tmp.getBytes());
+
+                        StringBuilder stringBuilder = new StringBuilder();
+                        String line;
+
+                        while ((line = bufferedReader.readLine()) != null) {
+                            stringBuilder.append(line).append("\n");
+                        }
+
+                        result = stringBuilder.toString();
+                        //result = result.replace(System.getProperty("line.separator"), "");
+
                     }
+                    Log.d("Flag Check", result);
+                    //BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    //StringBuilder stringBuilder = new StringBuilder();
+                    //String line;
 
+                    //while ((line = bufferedReader.readLine()) != null) {
+                    //    stringBuilder.append(line).append("\n");
+                    //}
+                    //Log.d("Server", "Wait Done");
+                    //Log.d("server class", result);
                     bufferedReader.close();
                     socket.close();
 
-                    result = stringBuilder.toString();
+                    //result = stringBuilder.toString();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            else{
+            else{*/
                 try {
-                    Socket socket = new Socket("3.16.64.115", 3333); // 서버 IP 주소와 포트를 수정하세요
+                    //Socket socket = new Socket("3.16.64.115", 3333); // 서버 IP 주소와 포트를 수정하세요
+                    Socket socket = new Socket("172.100.1.162", 3333);
                     OutputStream outputStream = socket.getOutputStream();
                     outputStream.write(message.getBytes());
 
@@ -83,13 +109,12 @@ public class server {
                     socket.close();
 
                     result = stringBuilder.toString();
+                    //Log.d("server class", result);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            //}
 
-
-            Log.d("server class", result);
             data = result.replace(System.getProperty("line.separator"), "");;
 
             flag = true;

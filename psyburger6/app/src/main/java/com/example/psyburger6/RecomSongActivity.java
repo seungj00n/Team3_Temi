@@ -79,6 +79,8 @@ public class RecomSongActivity extends Activity {
                 s.run(8, singer.get(0) + "의" + title.get(0) + " 들려줘");
                 while(!s.flag) continue;
                 String videoid = s.data;
+                videoid = videoid.split("<1>")[0];
+                Log.d("Recom Video ID", videoid);
 
                 Intent intent = new Intent(getApplicationContext(), PlaySongActivity.class);
                 intent.putExtra("VideoID", videoid);
