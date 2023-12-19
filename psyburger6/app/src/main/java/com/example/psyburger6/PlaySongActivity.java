@@ -118,8 +118,16 @@ public class PlaySongActivity extends Activity implements
         happySong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HappyResultActivity.class);
-                startActivity(intent);
+                server s = new server();
+                file_io f = new file_io();
+                String data = f.readFromFile(getApplicationContext(), f.string_to_file("1"));
+                s.run(4, data);
+                while(!s.flag) continue;
+
+                Log.d("Normal Test", s.data);
+
+                //Intent intent = new Intent(getApplicationContext(), HappyResultActivity.class);
+                //startActivity(intent);
             }
         });
 
@@ -127,8 +135,16 @@ public class PlaySongActivity extends Activity implements
         sadSong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SadResultActivity.class);
-                startActivity(intent);
+                server s = new server();
+                file_io f = new file_io();
+                String data = f.readFromFile(getApplicationContext(), f.string_to_file("2"));
+                s.run(4, data);
+                while(!s.flag) continue;
+
+                Log.d("Abnormal Test", s.data);
+
+                //Intent intent = new Intent(getApplicationContext(), SadResultActivity.class);
+                //startActivity(intent);
             }
         });
 

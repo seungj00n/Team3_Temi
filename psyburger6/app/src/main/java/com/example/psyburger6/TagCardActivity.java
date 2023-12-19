@@ -10,6 +10,10 @@ import android.widget.ImageButton;
 import androidx.annotation.Nullable;
 
 public class TagCardActivity extends Activity {
+
+    String seed;
+    String id;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +35,20 @@ public class TagCardActivity extends Activity {
         goToSelectSong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                id = "1";
+
                 Intent intent = new Intent(getApplicationContext(), SelectSongActivity.class);
+                intent.putExtra("ID", id);
                 startActivity(intent);
             }
         });
+    }
+
+
+
+    public void read_id(){
+        file_io f = new file_io();
+        String txtfile = f.string_to_file(id);
+        seed = f.readFromFile(getApplicationContext(), txtfile);
     }
 }
