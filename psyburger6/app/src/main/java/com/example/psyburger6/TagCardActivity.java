@@ -54,7 +54,7 @@ public class TagCardActivity extends Activity {
                 startActivity(intent);
             }
         });
-
+        /*
         Button goToSelectSong = findViewById(R.id.test1);
 
         goToSelectSong.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +71,7 @@ public class TagCardActivity extends Activity {
                 intent.putExtra("ID", id);
                 startActivity(intent);
             }
-        });
+        });*/
 
         th.start();
     }

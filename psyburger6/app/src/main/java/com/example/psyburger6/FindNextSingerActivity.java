@@ -61,7 +61,8 @@ public class FindNextSingerActivity extends Activity implements
 
         //테미 움직임에 추가한 부분
         robot = Robot.getInstance();
-        start_searching = findViewById(R.id.start_searching);
+        //start_searching = findViewById(R.id.start_searching);
+        ImageButton start_searching = (ImageButton) findViewById(R.id.start_button);
 
         //import java.util.Random; 추가 해야됨
         //랜덤 지점으로 이동하는 부분

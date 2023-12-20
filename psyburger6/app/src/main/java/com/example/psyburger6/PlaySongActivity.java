@@ -31,7 +31,9 @@ public class PlaySongActivity extends Activity implements
 
     //테미 움직임 추가 부분
     Robot robot;
-    Button dance_button;
+    //Button dance_button;
+    ImageButton dance_button;
+    ImageButton nodance_button;
     String movement_state;
     String Playing_satae = "stop";
     double dance_speed = 0.1;
@@ -92,7 +94,9 @@ public class PlaySongActivity extends Activity implements
 
         //테미 움직임 추가 부분
         robot = Robot.getInstance();
-        dance_button = findViewById(R.id.dance_OnOff);
+        //그냥 버튼 지워짐
+        dance_button = (ImageButton) findViewById(R.id.danceOnbutton);
+        nodance_button = (ImageButton) findViewById(R.id.danceOffbutton);
 
         //Youtube 실행
         webView = findViewById(R.id.webView);
@@ -121,58 +125,9 @@ public class PlaySongActivity extends Activity implements
                 startActivity(intent);
             }
         });
-
-        Button happySong = findViewById(R.id.happysong);
-        happySong.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                server s = new server();
-                file_io f = new file_io();
-                String data = f.readFromFile(getApplicationContext(), f.string_to_file("1"));
-                s.run(7, data);
-                while(!s.flag) continue;
-
-                Log.d("Normal Test", s.data);
-
-                //Intent intent = new Intent(getApplicationContext(), HappyResultActivity.class);
-                //startActivity(intent);
-            }
-        });
-
-        Button sadSong = findViewById(R.id.sadsong);
-        sadSong.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                server s = new server();
-                file_io f = new file_io();
-                String data = f.readFromFile(getApplicationContext(), f.string_to_file("2"));
-                s.run(7, data);
-                while(!s.flag) continue;
-
-                Log.d("Abnormal Test", s.data);
-
-                String id = intent.getStringExtra("ID");
-
-
-                if(s.data != "-1"){
-                    String log_b = f.readFromFile(getApplicationContext(), "Log.txt");
-                    String log_n = id + "," + s.data + "\n" + log_b;
-                    f.writeToFile(log_n, getApplicationContext(), "Log.txt");
-                    Log.d("Log", "Saved" + s.data);
-                    Log.d("Log data", log_n);
-                }
-
-                //Intent intent = new Intent(getApplicationContext(), SadResultActivity.class);
-                //startActivity(intent);
-            }
-        });
-
         dance_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(dance_button.getText().equals("춤추기"))
-                {
-                    dance_button.setText("춤안추기");
                     dance_flag = 1;
                     if(Playing_satae.equals("playing"))
                     {
@@ -180,13 +135,14 @@ public class PlaySongActivity extends Activity implements
                         robot.turnBy(30, (float)dance_speed);
                         robot.tiltAngle(35, (float)0.5); // -25도에서 50도가 범위
                     }
-                }
-                //춤을 추지 않는다 설정.
-                else {
-                    dance_button.setText("춤추기");
-                    dance_flag = 0;
-                    robot.stopMovement(); //멈추기
-                }
+            }
+        });
+
+        nodance_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dance_flag = 0;
+                robot.stopMovement(); //멈추기
             }
         });
 
@@ -229,7 +185,7 @@ public class PlaySongActivity extends Activity implements
         }
         else if(status.equals("abort")){
             //만약 회전이 불가능한 혼잡한 상황에 있다면 멈추고 춤추기로 변경.
-            dance_button.setText("춤추기");
+            //dance_button.setText("춤추기");
             movement_state = "stop";
             robot.stopMovement();
             Log.i("abort", "혼잡 상황");
@@ -268,7 +224,7 @@ public class PlaySongActivity extends Activity implements
                     f.writeToFile(log_n, getApplicationContext(), "Log.txt");
                 }
 
-                Intent intent_ = new Intent(getApplicationContext(), FindNextSingerActivity.class);
+                Intent intent_ = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent_);
             } else {
                 // 영상이 종료되지 않은 경우

@@ -18,6 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 
 
@@ -37,8 +39,22 @@ public class log_activity extends AppCompatActivity {
 
         //input data를 여기에 넣어주면 됩니다.
         //String[] input_data = {"data1", "data2", "data3"};
-        String[] input_data = logData.split("\n");
+        String[] logs = logData.split("\n");
 
+        // Process each log entry to format it with names based on ID
+        List<String> formattedLogs = new ArrayList<>();
+        for (String log : logs) {
+            String[] parts = log.split(" ");
+            if (parts.length >= 3) {
+                String id = parts[2];
+                String name = getNameById(id);
+                formattedLogs.add("날짜: " + parts[0] + "   ID: " + id + "   이름: " + name + "   우을증 편차 점수: " + parts[3]);
+            }
+        }
+
+
+        // Convert the list to an array for the ArrayAdapter
+        String[] input_data = formattedLogs.toArray(new String[0]);
 
         //리스트뷰 설정
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -46,7 +62,7 @@ public class log_activity extends AppCompatActivity {
 
         log_List.setAdapter(adapter);
 
-        ImageButton home_button = (ImageButton) findViewById(R.id.home_button);
+        ImageButton home_button = findViewById(R.id.home_button);
 
         home_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +71,24 @@ public class log_activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
+
+    // Helper method to get the name based on the ID
+    private String getNameById(String id) {
+        switch (id) {
+            case "1":
+                return "김을동";
+            case "2":
+                return "박금자";
+            case "3":
+                return "이옥자";
+            case "4":
+                return "최남진";
+            case "5":
+                return "아무개";
+            default:
+                return "Unknown";
+        }
+    }
+
 }

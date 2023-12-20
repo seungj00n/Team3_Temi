@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dance_OnOff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/karaoback">
@@ -23,37 +24,31 @@
             android:id="@+id/gohome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="710dp"
             android:layout_marginLeft="50dp"
+            android:layout_marginTop="710dp"
             android:background="#00000000"
             android:scaleType="fitXY"
             android:src="@drawable/gohome" />
 
-        <Button
-            android:id="@+id/happysong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="700dp"
-            android:text="신나는 노래를 불렀을 때"/>
+        <ImageButton
+            android:id="@+id/danceOnbutton"
+            android:layout_width="200sp"
+            android:layout_height="100sp"
+            android:layout_marginLeft="400dp"
+            android:layout_marginTop="680dp"
+            android:background="#00000000"
+            android:scaleType="fitXY"
+            android:src="@drawable/dance" />
 
-        <Button
-            android:id="@+id/dance_OnOff"
-            android:layout_width="160dp"
-            android:layout_height="109dp"
-            android:layout_marginLeft="570dp"
-            android:layout_marginTop="700dp"
-            android:text="춤안추기"
-            android:textSize="30sp" />
-
-        <Button
-            android:id="@+id/sadsong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="800dp"
-            android:layout_marginTop="700dp"
-            android:text="우울한 노래를 불렀을 때"/>
-
+        <ImageButton
+            android:id="@+id/danceOffbutton"
+            android:layout_width="200sp"
+            android:layout_height="100sp"
+            android:layout_marginLeft="700dp"
+            android:layout_marginTop="680dp"
+            android:background="#00000000"
+            android:scaleType="fitXY"
+            android:src="@drawable/nodance" />
 
 
     </FrameLayout>

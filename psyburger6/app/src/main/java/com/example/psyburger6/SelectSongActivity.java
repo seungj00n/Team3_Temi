@@ -5,27 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
-
 import com.robotemi.sdk.Robot;
-import com.robotemi.sdk.TtsRequest;
-import com.robotemi.sdk.UserInfo;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.util.List;
 
 public class SelectSongActivity extends Activity implements Robot.AsrListener{
     String id;
@@ -33,9 +17,6 @@ public class SelectSongActivity extends Activity implements Robot.AsrListener{
 
     Robot robot;
     String stt_data;
-
-    Button goToRecom;
-    Button playSong;
 
     int stt_responce;
 
@@ -58,7 +39,7 @@ public class SelectSongActivity extends Activity implements Robot.AsrListener{
             }
         });
 
-        playSong = findViewById(R.id.gosong);
+        ImageButton playSong = (ImageButton) findViewById(R.id.start_button);
         playSong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +57,7 @@ public class SelectSongActivity extends Activity implements Robot.AsrListener{
             }
         });
 
-        goToRecom = findViewById(R.id.recom);
+        ImageButton goToRecom = (ImageButton) findViewById(R.id.recom_button);
         goToRecom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

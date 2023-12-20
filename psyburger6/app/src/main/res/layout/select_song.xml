@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/whichsong">
@@ -20,21 +22,27 @@
             android:scaleType="fitXY"
             android:layout_gravity="top|right" />
 
-        <Button
-            android:id="@+id/gosong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="500dp"
-            android:text="봄날은 간다"/>
-
-        <Button
-            android:id="@+id/recom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:id="@+id/recom_button"
+            android:layout_width="105dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="950dp"
-            android:layout_marginTop="500dp"
-            android:text="추천해줘"/>
+            android:layout_marginTop="450sp"
+            android:background="#00000000"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/recom" />
+
+        <ImageButton
+            android:id="@+id/start_button"
+            android:layout_width="105dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="450dp"
+            android:background="#00000000"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/searchbutton" />
 
     </FrameLayout>
 
