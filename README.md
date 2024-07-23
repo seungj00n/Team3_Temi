@@ -1,6 +1,6 @@
 <h1>Temi Robot Android Project</h1>
 
-With cooperation with (주)클로봇 Company, our team created an Android Application for people to interact with the robot.
+With cooperation with (주)클로봇 Company, our team created an Android Application for people to interact with the Temi Robot.
 
 With the given SDK, the mobile robot can be controlled and move to designated places with JAVA.
 
@@ -31,7 +31,16 @@ To find the src, goto psyburger6/app/src/main/java/com/example/psyburger6.
     <dd>
       - Socket Communication With Android<br>
       - Utilizing Spotify API<br>
-      - Crawling Youtube For Music Video
+      - Crawling Youtube For Music Video<br>
     </dd>
   </dl>
+
+  <h4>Arduino:</h4>
+  <dl>
+    <dd>
+      - Socket Communication With AWS Python Server<br>
+      - ID Card Tag
+    </dd>
+  </dl>
+  
 </div>
